@@ -9,17 +9,17 @@ and manage balances of purchases orders given by the customer.
 
 The PO Register is a web application that allows users to:
 
-*Login/ Logout
-*Add, Update, and Edit Purchase Orders
-*Sort by type(Coax, Fiber, Dpr, MDU),Coordinator, Negative Balances,Projects, Dates, No PO
-*Categorize projects by Active, Complete and Cancelled
+* Login/ Logout
+* Add, Update, and Edit Purchase Orders
+* Sort by type(Coax, Fiber, Dpr, MDU),Coordinator, Negative Balances,Projects, Dates, No PO
+* Categorize projects by Active, Complete and Cancelled
 
 
 
 ### Technologies
-*Java
-*My Sql
-*HTML
-*CSS
-*Bootstrap
-*Thymeleaf
+* **Java**
+* **My Sql**
+* **HTML**
+* **CSS**
+* **Bootstrap**
+* **Thymeleaf**
