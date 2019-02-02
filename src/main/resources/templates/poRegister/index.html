@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+
+<body class="container">
+
+<h1 th:text="${title}"></h1>
+
+
+<p th:unless="${purchaseOrders} and ${purchaseOrders.size()}">No PO's</p>
+
+<nav th:replace="fragments :: navigation"></nav>
+
+<table class="table">
+    <tr>
+        <th>Date</th>
+        <th>PO Number</th>
+        <th>Project Name</th>
+        <th>Coordinator</th>
+    </tr>
+
+
+
+    <tr th:each="purchaseOrder : ${purchaseOrders}">
+        <td th:text="${purchaseOrder.number}"></td>
+        <td th:text="${purchaseOrder.date}"></td>
+        <td th:text="${purchaseOrder.name}"></td>
+        <td th:text="${purchaseOrder.coordinatorName}"></td>
+    </tr>
+</table>
+</body>
+</html>

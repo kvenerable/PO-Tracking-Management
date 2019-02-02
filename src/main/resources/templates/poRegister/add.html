@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+
+<body class="container">
+<h1 th:text="${title}">Default Title</h1>
+
+<nav th:replace="fragments :: navigation"></nav>
+
+<form method="post" style="max-width:600px;">
+    <div class="form-group">
+        <label for="date-field">Date</label>
+        <input class="form-control" type="date" name="date" id="date-field" />
+    </div>
+
+    <div class="form-group">
+        <label for="name-field">Project Name</label>
+        <input class="form-control" type="text" name="name" id="name-field"/>
+    </div>
+
+    <div class="form-group">
+        <label for="number-field">PO Number</label>
+        <input class="form-control" type="text" name="number" id="number-field"/>
+    </div>
+
+    <div class="form-group">
+        <label for="coordinator-field">Coordinator Name</label>
+        <input class="form-control" type="text" name="coordinatorName" id="coordinator-field"/>
+    </div>
+
+    <!--<div>-->
+    <!--<select>-->
+    <!--<option value="fiber">Fiber</option>-->
+    <!--<option value="dpr">DPR</option>-->
+    <!--<option value="coax">Coax</option>-->
+    <!--<option value="mdu">MDU</option>-->
+    <!--</select>-->
+    <!--</div>-->
+
+    <input type="submit" value="Add PO"/>
+</form>
+</body>
+</html>
