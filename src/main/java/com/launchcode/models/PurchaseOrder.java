@@ -1,26 +1,54 @@
 package com.launchcode.models;
 
+import javax.persistence.*;
+
+@Entity
 public class PurchaseOrder {
 
+    @Id
+    @GeneratedValue
+    @Column(name ="id")
+    private int id;
+
+    @Column(name = "name")
     private String name;
+    @Column(name = "number")
     private String number;
+
+    @Column(name ="date")
     private String date;
+
+    @Column(name ="coordinatorName")
     private String coordinatorName;
-    private int poId;
-    private static int nextId =1;
+
+    @Column(name="poAmount")
+    private Integer poAmount;
+
+    @Column(name = "poBalance")
+    private Integer poBalance;
 
 
-    public PurchaseOrder(String name, String number, String date, String coordinatorName) {
+   @ManyToOne
+    private  PoType poType;
+
+
+
+
+    public PurchaseOrder(String name, String number, String date, String coordinatorName, Integer poAmount, Integer poBalance) {
         this();
         this.name = name;
         this.number = number;
         this.date = date;
         this.coordinatorName = coordinatorName;
+        this.poAmount = poAmount;
+        this.poBalance = poBalance;
     }
 
     public PurchaseOrder() {
-        poId = nextId;
-        nextId++;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public String getName() {
@@ -51,15 +79,29 @@ public class PurchaseOrder {
         return coordinatorName;
     }
 
-    public void setCoordonatorName(String coordinatorName) {
+    public void setCoordinatorName(String coordinatorName) {
         this.coordinatorName = coordinatorName;
     }
 
-    public int getPoId() {
-        return poId;
+    public Integer getPoAmount() { return poAmount; }
+
+    public void setPoAmount(int poAmount) {
+        this.poAmount = poAmount;
     }
 
-    public void setPoId(int poId) {
-        this.poId = poId;
+    public Integer getPoBalance() {
+        return poBalance;
+    }
+
+    public void setPoBalance(int poBalance) {
+        this.poBalance = poBalance;
+    }
+
+    public PoType getPoType() {
+        return poType;
+    }
+
+    public void setPoType(PoType poType) {
+        this.poType = poType;
     }
 }

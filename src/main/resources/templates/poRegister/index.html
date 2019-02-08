@@ -3,29 +3,34 @@
 <head th:replace="fragments :: head"></head>
 
 <body class="container">
-
-<h1 th:text="${title}"></h1>
-
-
-<p th:unless="${purchaseOrders} and ${purchaseOrders.size()}">No PO's</p>
+<h1 th:text="${title}">Default Title</h1>
 
 <nav th:replace="fragments :: navigation"></nav>
 
+<p th:unless="${purchaseOrders} and ${purchaseOrders.size()}">No PO's</p>
+
+
 <table class="table">
     <tr>
+        <th>Type</th>
         <th>Date</th>
         <th>PO Number</th>
         <th>Project Name</th>
         <th>Coordinator</th>
+        <th>PO Amount</th>
+        <th>PO Balance</th>
     </tr>
 
 
 
     <tr th:each="purchaseOrder : ${purchaseOrders}">
-        <td th:text="${purchaseOrder.number}"></td>
+        <td th:text="${poType.getPoType()}"></td>
         <td th:text="${purchaseOrder.date}"></td>
+        <td th:text="${purchaseOrder.number}"></td>
         <td th:text="${purchaseOrder.name}"></td>
         <td th:text="${purchaseOrder.coordinatorName}"></td>
+        <td th:text="${purchaseOrder.poAmount}"></td>
+        <td th:text="${purchaseOrder.poBalance}"></td>
     </tr>
 </table>
 </body>

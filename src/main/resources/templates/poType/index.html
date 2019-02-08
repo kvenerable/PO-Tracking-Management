@@ -1,0 +1,29 @@
+<!DOCTYPE>
+ <html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+
+<body class="container">
+
+<h1 th:text="${title}"></h1>
+
+
+<p th:unless="${poType} and ${poTypes.size()}">No Types</p>
+
+<nav th:replace="fragments :: navigation"></nav>
+
+<table class="table">
+    <tr>
+        <th>PO Type</th>
+
+    </tr>
+
+
+
+    <tr th:each="poType : ${poTypes}">
+        <td th:text="${poType.poType}"></td>
+
+    </tr>
+</table>
+</body>
+</html>

@@ -27,15 +27,24 @@
         <label for="coordinator-field">Coordinator Name</label>
         <input class="form-control" type="text" name="coordinatorName" id="coordinator-field"/>
     </div>
+    <div class="form-group">
+        <label for="po-Amount">PO Amount</label>
+        <input class="form-control" type="text" name="poAmount" id="po-Amount"/>
+    </div>
 
-    <!--<div>-->
-    <!--<select>-->
-    <!--<option value="fiber">Fiber</option>-->
-    <!--<option value="dpr">DPR</option>-->
-    <!--<option value="coax">Coax</option>-->
-    <!--<option value="mdu">MDU</option>-->
-    <!--</select>-->
-    <!--</div>-->
+    <div class="form-group">
+        <label for="po-Balance">PO Balance</label>
+        <input class="form-control" type="text" name="poBalance" id="po-Balance"/>
+    </div>
+
+    <div class="form-group">
+        <label th:for="type">Type</label>
+        <select name="">
+            <option th:each="poType : ${poTypes}"
+                    th:text="${poType.poType}"
+                    th:value="${poType.id}"></option>
+        </select>
+    </div>
 
     <input type="submit" value="Add PO"/>
 </form>
