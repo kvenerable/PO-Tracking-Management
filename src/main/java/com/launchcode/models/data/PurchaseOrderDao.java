@@ -9,4 +9,8 @@ import javax.transaction.Transactional;
 @Repository
 @Transactional
 public interface PurchaseOrderDao extends CrudRepository<PurchaseOrder,Integer> {
+
+
 }
+
+

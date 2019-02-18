@@ -30,31 +30,31 @@ public class PoRegisterController {
 
 
     @RequestMapping(value = "")
-    public String index(Model model){
-
+    public String index(Model model) {
 
 
         model.addAttribute("purchaseOrders", purchaseOrderDao.findAll());
-        model.addAttribute("title","PO Register");
+        model.addAttribute("title", "PO Register");
         return "poRegister/index";
     }
 
-    @RequestMapping(value ="add", method = RequestMethod.GET)
-    public String dispalyAddPOForm(Model model){
-        model.addAttribute("title","Add PO");
+    @RequestMapping(value = "add", method = RequestMethod.GET)
+    public String dispalyAddPOForm(Model model) {
+        model.addAttribute("title", "Add PO");
         model.addAttribute(new PurchaseOrder());
         model.addAttribute("poTypes", poTypeDao.findAll());
         return "poRegister/add";
 
     }
-    @RequestMapping(value = "add", method= RequestMethod.POST)
-    public String processAddPOForm(@Valid @ModelAttribute PurchaseOrder newPurchaseOrder, Errors errors, @RequestParam int poTypeId, Model model){
 
-        if(errors.hasErrors()){
+    @RequestMapping(value = "add", method = RequestMethod.POST)
+    public String processAddPOForm(@Valid @ModelAttribute PurchaseOrder newPurchaseOrder, Errors errors, @RequestParam int poTypeId, Model model) {
+
+        if (errors.hasErrors()) {
 
             model.addAttribute("title", "Add Type");
-            model.addAttribute("poTypes",poTypeDao.findAll());
-            return"poRegister/add";
+            model.addAttribute("poTypes", poTypeDao.findAll());
+            return "poRegister/add";
         }
 
         PoType ptype = poTypeDao.findOne(poTypeId);
@@ -75,7 +75,7 @@ public class PoRegisterController {
     @RequestMapping(value = "remove", method = RequestMethod.POST)
     public String processRemoveCheeseForm(@RequestParam int[] poIds) {
 
-        for (int poId :poIds) {
+        for (int poId : poIds) {
             purchaseOrderDao.delete(poId);
         }
 
@@ -83,17 +83,43 @@ public class PoRegisterController {
     }
 
 
-    @RequestMapping(value="poType", method = RequestMethod.GET)
-    public String poType(Model model, @RequestParam int id){
+    @RequestMapping(value = "poType", method = RequestMethod.GET)
+    public String poType(Model model, @RequestParam int id) {
 
         PoType ptype = poTypeDao.findOne(id);
         List<PurchaseOrder> purchaseOrders = ptype.getPurchaseOrders();
-        model.addAttribute("purchaseOrders",purchaseOrders);
+        model.addAttribute("purchaseOrders", purchaseOrders);
         model.addAttribute("title", "PO's by Type: " + ptype.getName());
         return "poRegister/index";
 
     }
 
+    @RequestMapping(value = "completed", method = RequestMethod.GET)
+    public String complete(Model model) {
 
 
+        model.addAttribute("purchaseOrders", purchaseOrderDao.findAll());
+        model.addAttribute("title", "Complete Projects");
+        return "poRegister/completed";
+
+    }
+
+
+    @RequestMapping(value = "complete", method = RequestMethod.GET)
+    public String processCompletedForm(@RequestParam int[] poIds, PurchaseOrder completePO, Model model) {
+
+        for (int poId : poIds) {
+            purchaseOrderDao.save(completePO);
+
+            PurchaseOrder compPO = purchaseOrderDao.findOne(poId);
+
+        }
+
+
+        return "poRegister/completedList";
+
+    }
 }
+
+
+
