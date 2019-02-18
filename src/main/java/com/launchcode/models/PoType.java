@@ -13,28 +13,40 @@ public class PoType {
     @Column(name="id")
     private int id;
 
+
+    @Column(name = "name")
     @NotNull
-    @Column(name = "poType")
-    private String poType;
+    private String name;
 
+    @OneToMany
+    @JoinColumn(name = "po_type_id")
+    private List<PurchaseOrder> purchaseOrders = new ArrayList<>();
 
+    public PoType() { }
 
-    public int getId() {
-        return id;
+    public PoType(String name) { this.name = name; }
+
+    public int getId() { return id; }
+
+    public String getName() {
+        return name;
     }
 
-    public String getPoType() {
-        return poType;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public void setPoType(String poType) {
-        this.poType = poType;
+    public String getPoType() { return name; }
+
+    public void setPoType(String name) { this.name = name; }
+
+
+    public List<PurchaseOrder> getPurchaseOrders() {
+        return purchaseOrders;
     }
 
-    public PoType() {
-    }
-
-    public PoType(String poType) {
-        this.poType = poType;
+    public void setPurchaseOrders(List<PurchaseOrder> purchaseOrders) {
+        this.purchaseOrders = purchaseOrders;
     }
 }
+

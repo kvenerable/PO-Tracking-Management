@@ -24,14 +24,17 @@
 
 
     <tr th:each="purchaseOrder : ${purchaseOrders}">
-        <td th:text="${poType.getPoType()}"></td>
+        <td th:text="${purchaseOrder.poType.name}"></td>
         <td th:text="${purchaseOrder.date}"></td>
         <td th:text="${purchaseOrder.number}"></td>
-        <td th:text="${purchaseOrder.name}"></td>
+        <td> <a th:href="@{'/poRegister/poTab?id=' + ${purchaseOrder.PoId}}" th:text="${purchaseOrder.name}"></a></td>
         <td th:text="${purchaseOrder.coordinatorName}"></td>
         <td th:text="${purchaseOrder.poAmount}"></td>
         <td th:text="${purchaseOrder.poBalance}"></td>
     </tr>
+
+
 </table>
+<a href="/poRegister/remove">Remove</a>
 </body>
 </html>

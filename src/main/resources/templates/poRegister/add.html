@@ -7,41 +7,47 @@
 
 <nav th:replace="fragments :: navigation"></nav>
 
-<form method="post" style="max-width:600px;">
+<form method="post" style="max-width:600px;" th:object="${purchaseOrder}">
     <div class="form-group">
-        <label for="date-field">Date</label>
-        <input class="form-control" type="date" name="date" id="date-field" />
+        <label th:for="date">Date</label>
+        <input class="form-control"  th:field="*{date}" />
+
     </div>
 
     <div class="form-group">
-        <label for="name-field">Project Name</label>
-        <input class="form-control" type="text" name="name" id="name-field"/>
+        <label th:for="name">Project Name</label>
+        <input class="form-control"  th:field="*{name}"/>
+
     </div>
 
     <div class="form-group">
-        <label for="number-field">PO Number</label>
-        <input class="form-control" type="text" name="number" id="number-field"/>
+        <label th:for="poNumber">PO Number</label>
+        <input class="form-control" th:field="*{number}"/>
+
     </div>
 
     <div class="form-group">
-        <label for="coordinator-field">Coordinator Name</label>
-        <input class="form-control" type="text" name="coordinatorName" id="coordinator-field"/>
+        <label th:for="coordinatorName">Coordinator Name</label>
+        <input class="form-control" th:field="*{coordinatorName}"/>
+
     </div>
     <div class="form-group">
-        <label for="po-Amount">PO Amount</label>
-        <input class="form-control" type="text" name="poAmount" id="po-Amount"/>
+        <label th:for="poAmount">PO Amount</label>
+        <input class="form-control" th:field="*{poAmount}"/>
+
     </div>
 
     <div class="form-group">
-        <label for="po-Balance">PO Balance</label>
-        <input class="form-control" type="text" name="poBalance" id="po-Balance"/>
+        <label th:for="poBalance">PO Balance</label>
+        <input class="form-control" th:field="*{poBalance}"/>
+
     </div>
 
     <div class="form-group">
         <label th:for="type">Type</label>
-        <select name="">
+        <select name="poTypeId">
             <option th:each="poType : ${poTypes}"
-                    th:text="${poType.poType}"
+                    th:text="${poType.name}"
                     th:value="${poType.id}"></option>
         </select>
     </div>

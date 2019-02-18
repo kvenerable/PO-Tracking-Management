@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
-
 <body class="container">
 <h1 th:text="${title}">Default Title</h1>
 
 <nav th:replace="fragments :: navigation"></nav>
 
-
-<form method="post" style="max-width:600px;">
+<form method="post" style="max-width:600px;" th:object="${poType}">
     <div class="form-group">
-        <label for="po-Type">PO Type</label>
-        <input class="form-control" type="poType" name="poType" id="po-Type" />
+        <label th:for="name">Name</label>
+        <input class="form-control" th:field="*{name}" />
+        <span th:errors="*{name}" class="error"></span>
     </div>
 
-    <input type="submit" value="Add Type"/>
+    <input type="submit" value="Add Type" />
 </form>
+
 </body>
 </html>
