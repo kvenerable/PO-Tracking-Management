@@ -94,8 +94,8 @@ public class PoRegisterController {
 
     }
 
-    @RequestMapping(value = "completed", method = RequestMethod.GET)
-    public String complete(Model model) {
+    @RequestMapping(value ="completed", method = RequestMethod.GET)
+    public String completed(Model model) {
 
 
         model.addAttribute("purchaseOrders", purchaseOrderDao.findAll());
@@ -105,18 +105,27 @@ public class PoRegisterController {
     }
 
 
-    @RequestMapping(value = "complete", method = RequestMethod.GET)
-    public String processCompletedForm(@RequestParam int[] poIds, PurchaseOrder completePO, Model model) {
+    @RequestMapping(value = "completedIndex", method = RequestMethod.GET)
+    public String processCompletedForm(Model model, @RequestParam int [] poIds, PurchaseOrder completePO) {
 
-        for (int poId : poIds) {
-            purchaseOrderDao.save(completePO);
+            for (int poId : poIds) {
 
-            PurchaseOrder compPO = purchaseOrderDao.findOne(poId);
+                PurchaseOrder donePO = purchaseOrderDao.findOne(poId);
+                completePO.setPoId(poId);
+                purchaseOrderDao.save(completePO);
 
-        }
+            }
 
 
-        return "poRegister/completedList";
+            model.addAttribute("purchaseOrders",purchaseOrderDao.findAll());
+            model.addAttribute("title", "Completed Projects");
+
+
+
+
+
+
+            return "poRegister/completedIndex";
 
     }
 }

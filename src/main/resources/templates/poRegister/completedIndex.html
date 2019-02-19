@@ -9,9 +9,9 @@
 
 <p th:unless="${purchaseOrders} and ${purchaseOrders.size()}">No PO's</p>
 
-
-<table class="table">
-    <tr>
+<form >
+<table class="table" >
+    <tr >
         <th>Type</th>
         <th>Date</th>
         <th>PO Number</th>
@@ -24,17 +24,18 @@
 
 
     <tr th:each="purchaseOrder : ${purchaseOrders}">
-        <td th:text="${purchaseOrder.poType.name}"></td>
+        <td th:text="${purchaseOrder.poType.name}" ></td>
         <td th:text="${purchaseOrder.date}"></td>
         <td th:text="${purchaseOrder.number}"></td>
-        <td> <a th:href="@{'/poRegister/poTab?id=' + ${purchaseOrder.PoId}}" th:text="${purchaseOrder.name}"></a></td>
+        <td> <a th:href="@{'/poRegister/poTab?id=' + ${purchaseOrder.poId}}" th:text="${purchaseOrder.name}"></a></td>
         <td th:text="${purchaseOrder.coordinatorName}"></td>
-        <td th:text="${purchaseOrder.poAmount}"></td>
+        <td th:text="${purchaseOrder.Po}"></td>
         <td th:text="${purchaseOrder.poBalance}"></td>
     </tr>
 
 
 </table>
+</form>
 <br>
 <a href="/poRegister/remove">Remove</a>
 </br>
