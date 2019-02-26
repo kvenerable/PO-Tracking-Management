@@ -18,6 +18,7 @@ import java.util.List;
 import java.util.Locale;
 
 
+
 @Controller
 @RequestMapping(value = "poRegister")
 public class PoRegisterController {
@@ -105,7 +106,7 @@ public class PoRegisterController {
     }
 
 
-    @RequestMapping(value = "completedIndex", method = RequestMethod.GET)
+    @RequestMapping(value = "completedIndex", method = RequestMethod.POST)
     public String processCompletedForm(Model model, @RequestParam int [] poIds, PurchaseOrder completePO) {
 
             for (int poId : poIds) {
@@ -116,16 +117,23 @@ public class PoRegisterController {
 
             }
 
-
             model.addAttribute("purchaseOrders",purchaseOrderDao.findAll());
             model.addAttribute("title", "Completed Projects");
 
 
-
-
-
-
             return "poRegister/completedIndex";
+
+    }
+
+
+    @RequestMapping(value = "poTab", method = RequestMethod.GET)
+    public String displaypoTabForm (Model model, @RequestParam int id ){
+
+        PurchaseOrder onePO = purchaseOrderDao.findOne(id);
+        model.addAttribute("title","PO:" + onePO.getName());
+        model.addAttribute("purchaseOrder", purchaseOrderDao.findOne(id));
+
+        return"poRegister/poTab";
 
     }
 }

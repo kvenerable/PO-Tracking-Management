@@ -22,6 +22,7 @@ public class PoType {
     @JoinColumn(name = "po_type_id")
     private List<PurchaseOrder> purchaseOrders = new ArrayList<>();
 
+
     public PoType() { }
 
     public PoType(String name) { this.name = name; }
